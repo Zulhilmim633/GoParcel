@@ -1,0 +1,32 @@
+.career-type {
+    display: flex;
+    flex-direction: row;
+    width: 578px;
+    flex-wrap: wrap;
+    height: 373px;
+    align-content: space-between;
+    justify-content: space-between;
+    row-gap: 10px;
+    margin: 48px 0px 83px 0px;
+}
+
+.career-type>div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 169px;
+    padding: 17px;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 9px;
+}
+
+.career-type>div>h4 {
+    text-align: center;
+    width: 70px;
+}
+
+.career-type>div:hover {
+    cursor: pointer !important;
+    color: #47688d;
+}
