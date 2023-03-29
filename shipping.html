@@ -10,6 +10,53 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
+    <style>
+        ul {
+            list-style: none;
+        }
+
+        .section {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid black;
+            padding: 15px;
+            margin-right: 15px;
+            border-radius: 13px;
+            height: 26rem;
+        }
+
+        .container img {
+            height: 98px;
+        }
+
+        .container h2 {
+            margin-bottom: 45px;
+            margin-top: 20px;
+        }
+
+        .container input {
+            bottom: -68px;
+            position: relative;
+            border: none;
+            scale: 1.2;
+            border-radius: 5px;
+            background-color: #4d7199;
+            color: #f1f1f1;
+            cursor: pointer;
+        }
+
+        .container input:hover {
+            box-shadow: 6px 5px 6px rgba(0, 0, 0, 0.5);
+            color: #fbe289;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,15 +87,57 @@
             </div>
         </div>
         <div class="account-section">
-            <span class="btn signin">Sign In</span>
+            <a href="signin.html"><span class="btn signin">Sign In</span></a>
         </div>
     </div>
     <div class="content">
-        <div class="banner">
-        </div>
-        <div class="tracking">
+        <h1 style="margin-bottom: 42px;">Shipping Category</h1>
+        <div class="section">
+            <div class="container">
+                <div class="image">
+                    <img src="./image/one-time-order.png" alt="">
+                </div>
+                <h2>One Time Order</h2>
+                <ul style="margin-bottom: 22px;padding-right: 32px;">
+                    <li>Quick order</li>
+                    <li>30KG maximum weight</li>
+                    <li>Parcels or documents</li>
+                </ul>
+                <input type="button" value="Order Now">
+            </div>
+            <div class="container">
+                <div class="image">
+                    <img src="./image/standard-deliveery.png" alt="">
+                </div>
+                <h2>Single / Bulk Order</h2>
+                <ul style="margin-bottom: 22px;padding-right: 32px;">
+                    <li>Make Single or bulk order</li>
+                    <li>30KG maximum weight</li>
+                    <li>Parcels or documents</li>
+                </ul>
+                <input type="button" value="Order Now">
+            </div>
+            <div class="container">
+                <div class="image">
+                    <img src="./image/express.jpg" alt="">
+                </div>
+                <h2>Next Day Delivery</h2>
+                <ul style="padding-right: 32px;">
+                    <li>Next Day Delivery (NDD) Service</li>
+                    <li>Add extra RM3 on shipping fees</li>
+                    <li>Guarantee Next Day Delivery</li>
+                    <li>5 KG and below</li>
+                </ul>
+                <input type="button" value="Order Now">
+            </div>
         </div>
     </div>
+    <script>
+        const test = document.querySelectorAll("body > div.content > div > div > input[type=button]")
+        test[0].addEventListener("click",()=>{alert("Required Login first")})
+        test[1].addEventListener("click",()=>{alert("Required Login first")})
+        test[2].addEventListener("click",()=>{alert("Required Login first")})
+    </script>
 </body>
 
 <footer>

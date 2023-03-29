@@ -10,6 +10,46 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
+    <style>
+        .about {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            margin-bottom: 42px;
+        }
+
+        .about h1 {
+            margin-bottom: 31px;
+        }
+
+        .advantage {
+            position: relative;
+            left: -503px;
+        }
+
+        .advantage ul li {
+            padding: 13px;
+        }
+
+        .about p,
+        .advantage ul li {
+            color: #787878;
+        }
+
+        .content {
+            padding: 0 0 50px 0;
+        }
+
+        .back {
+            background-color: #eeeeee;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            margin-bottom: 33px;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,13 +80,33 @@
             </div>
         </div>
         <div class="account-section">
-            <span class="btn signin">Sign In</span>
+            <a href="signin.html"><span class="btn signin">Sign In</span></a>
         </div>
     </div>
     <div class="content">
-        <div class="banner">
+        <div class="back">
+            <div class="about">
+                <h1>About GoParcel</h1>
+                <p>GoParcel is an online booking platform for parcel delivery service worldwide. We automatically choose
+                    the
+                    best delivery solution for you, which means that you get the best service for the lowest available
+                    price. We work closely with the best courier partners across the world to bring you first class
+                    affordable door-to-door parcel delivery services within Ireland and to any destination worldwide.
+                    Further to this, GoParcel is not a comparison website, meaning that delivery should be simple and
+                    fast.
+                    With GoParcel the booking process requires only just few clicks. Our technology driven solution
+                    introduces a more organized, user-friendly and cost-effective approach to delivery. We grant access
+                    to
+                    high quality delivery services for customers who want to send parcel to any destination.</p>
+            </div>
         </div>
-        <div class="tracking">
+        <div class="advantage">
+            <p><strong>Our Main Advantage Are:</strong></p>
+            <ul>
+                <li>Technology</li>
+                <li>Competitive prices</li>
+                <li>Security</li>
+            </ul>
         </div>
     </div>
 </body>

@@ -42,8 +42,11 @@ function getState($stateCode)
     }
 }
 
-let t = []
+let t = {}
 for (let index = 0; index < 99999; index++) {
-    getState(index) ? t.push(getState(index)) : undefined
+    let states = Object.keys(t)
+    states.indexOf(getState(index)) === -1 ? t[getState(index)] = index : undefined
+    // getState(index)  ? t.push(`${index} ${getState(index)}`) : undefined
 }
-console.log(t.length)
+
+console.log(t)

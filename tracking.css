@@ -5,21 +5,21 @@
 }
 
 .Track {
-    padding: 10% 0px 14% 0px;
+    padding: 10% 0px 9.1% 0px;
     width: 61%;
 }
 
 form {
     display: flex;
+    margin-right: 76px;
 }
 
 form button {
     background-color: #fbfcfc;
     padding: 0;
     position: absolute;
-    margin-left: 61%;
+    margin-left: 56%;
 }
-
 
 form button {
     padding: 0px 14px;
@@ -48,4 +48,68 @@ form input {
 form input::placeholder {
     font-weight: bold;
     color: black;
+}
+
+.tracking {
+    width: 64%;
+    background-color: #f2f2f2;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.tracking * {
+    user-select: none;
+}
+
+.condition, .location {
+    display: flex;
+    padding: 0 24px 0 24px;
+}
+
+.condition span, .location span {
+    padding: 0 9% 0 9%;
+    width: 65px;
+    text-align: center;
+}
+
+.location {
+    margin-top: 15px;
+}
+
+/* .condition span:last-child {
+    padding: 0 0 0 9%;
+} */
+
+.progress-bar {
+    background-color: green;
+    height: 4px;
+    margin-left: 129px;
+    width: 0em;
+    margin-top: 15px;
+    z-index: 1;
+    transition: width .5s linear;
+    position: relative;
+}
+
+.circle {
+    display:flex;
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 129px;
+    width: 64%;
+    z-index: 2;
+}
+
+.circle span {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    border: 1px solid rgb(78, 78, 78);
+    margin-right: 13.77em;
+}
+
+.circle span.active {
+    border: 1px solid lime;
+    background-color: lime;
 }

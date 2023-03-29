@@ -10,9 +10,48 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
+    <style>
+        .rate {
+            width: 80%;
+            display: flex;
+            justify-content: center;
+        }
+
+        input[type=text] {
+            padding: 10px;
+            width: 480px;
+        }
+
+        select {
+            padding: 10px;
+            width: 503px;
+        }
+
+        td {
+            padding: 12px 6px;
+        }
+
+        .check-btn {
+            margin-bottom: 45px;
+            border: none;
+            background-color: #fce38a;
+            height: 40px;
+            scale: 1.3;
+            border-radius: 9px;
+            cursor: pointer;
+            width: 17em;
+            margin-top: 8px;
+        }
+        .rate form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
 </head>
 
 <body>
+    <script type="text/javascript" src="pricerates.js" defer></script>
     <div class="navbar">
         <a href="./index.html" class="Logo">
             <img src="./logo.png" alt="page icon">
@@ -40,35 +79,43 @@
             </div>
         </div>
         <div class="account-section">
-            <span class="btn signin">Sign In</span>
+            <a href="signin.html"><span class="btn signin">Sign In</span></a>
         </div>
     </div>
     <div class="content">
         <h1 style="color:#858585;"><b>Shipping Rates</b></h1>
-        <div>
-            <form action="pricerates.php">    
+        <div class="rate">
+            <form action="pricerates.php">
                 <table>
                     <tr>
                         <td>
                             <label for="shipFrom"><span class="required">*</span>Postcode (FROM)</label>
+                        </td>
+                        <td>
                             <input type="text" id="shipFrom" name="shipFrom" required>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label for="shipTo"><span class="required">*</span>Postcode (TO)</label>
+                        </td>
+                        <td>
                             <input type="text" id="shipTo" name="shipTo" required>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label for="weight"><span class="required">*</span>Weight (KG)</label>
+                        </td>
+                        <td>
                             <input type="text" id="weight" name="weight" required>
                         </td>
                     </tr>
                     <tr>
                         <td>
                             <label for="shipment">Shipping Type</label>
+                        </td>
+                        <td>
                             <select name="shipmet" id="shipmet">
                                 <option value="REG">Regular</option>
                                 <option value="EXP">Next Day Delivery</option>
@@ -76,9 +123,16 @@
                         </td>
                     </tr>
                 </table>
+                <input type="submit" value="Check" class="check-btn">
             </form>
         </div>
     </div>
+    <script>
+        let que = new URL(window.location.href)
+        document.forms[0].shipFrom.value = que.searchParams.get("postcodeFrom")
+        document.forms[0].shipTo.value = que.searchParams.get("postcodeTo")
+        document.forms[0].weight.value = que.searchParams.get("weight")
+    </script>
 </body>
 
 <footer>

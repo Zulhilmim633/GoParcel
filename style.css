@@ -27,11 +27,16 @@ body {
 }
 
 .navbar>a>img {
-    height: 38px;
+    height: 58px;
 }
 
 .Logo {
     padding: 11px 34px;
+}
+
+.navbar a .signin {
+    color: #333333;
+    text-decoration: none;
 }
 
 .navbar a {
@@ -94,6 +99,10 @@ body {
     display: block;
 }
 
+.dropdown, .account-section {
+    margin-top: 10px;
+}
+
 .account-section {
     right: 10px;
     position: absolute;
@@ -115,6 +124,7 @@ body {
     background-color: #fbe289;
 }
 
+
 .btn:hover {
     transition: .4s;
     opacity: .7;
@@ -125,7 +135,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 50px 0 50px 0;
+    padding: 50px 0 66px 0;
 }
 
 footer {

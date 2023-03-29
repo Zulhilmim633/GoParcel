@@ -29,4 +29,6 @@
 .career-type>div:hover {
     cursor: pointer !important;
     color: #47688d;
+    box-shadow: 0 0 15px #47688d;
+    background-color: #eeeeee;
 }

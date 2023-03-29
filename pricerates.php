@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="account-section">
-            <span class="btn signin">Sign In</span>
+        <a href="signin.html"><span class="btn signin">Sign In</span></a>
         </div>
     </div>
     <div class="content">

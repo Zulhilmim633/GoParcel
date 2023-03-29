@@ -2,15 +2,74 @@
 <html lang="en">
 
 <head>
+    <!-- <meta http-equiv="refresh" content="4" > -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="career.css">
     <title>GoParcel</title>
     <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
+    <style>
+        .content {
+            padding: 0;
+        }
+
+        .back {
+            height: 89vh;
+            width: 98.95vw;
+            background-image: url(./image/background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            width: 23em;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 6px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        form input[type=text],
+        form input[type=password] {
+            padding: 7px 14px;
+            border-radius: 14px;
+            /* border: none; */
+            background-color: #e7e7e7;
+            /* border-bottom: 2px solid; */
+        }
+
+
+        form * {
+            margin-bottom: 15px;
+        }
+
+        form {
+            background-color: #3b3d4186;
+            border-radius: 14px;
+            padding: 20px;
+            color: white;
+        }
+
+        form input[type=submit] {
+            border: none;
+            background-color: #fce38a;
+            height: 40px;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        form a {
+            text-decoration: none;
+            color: #fce38a;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,43 +103,24 @@
             <a href="signin.html"><span class="btn signin">Sign In</span></a>
         </div>
     </div>
-    <div class="content" style="display: flex;align-items: center;flex-direction: column;">
-        <h1 align="center">Career with us</h1>
-        <div class="career-type">
-            <div onclick="sendmail()"><img src="image/admin.png" alt="Admin">
-                <h4>Admin</h4>
-            </div>
-            <div onclick="sendmail()"><img src="image/Hr.png" alt="Human Resource">
-                <h4>Human Resource</h4>
-            </div>
-            <div onclick="sendmail()"><img src="image/CS.png" alt="Customer Service">
-                <h4>Customer Service</h4>
-            </div>
-            <div onclick="sendmail()"><img src="image/marketing.png" alt="Marketing">
-                <h4>Marketing</h4>
-            </div>
-            <div onclick="sendmail()"><img src="image/warehouse.png" alt="Warehouse">
-                <h4>Warehouse</h4>
-            </div>
-            <div onclick="sendmail()"><img src="image/It.png" alt="IT">
-                <h4>IT</h4>
-            </div>
-            <div onclick="sendmail()"><img src="image/Finance.png" alt="Finance">
-                <h4>Finance</h4>
-            </div>
-            <div onclick="sendmail()"><img src="image/logistic.png" alt="Logistic">
-                <h4>Logistic</h4>
-            </div>
-            <script type="text/javascript">
-                function sendmail() {
-                    location.href = "mailto:hr@goparcel.com?subject=Application for Job offering&body=Please ad your CV here";
-                }
-            </script>
+    <div class="content">
+        <div class="back">
+            <form action="signup.php">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <label for="Cpassword">Confirm Password</label>
+                <input type="password" name="Cpassword" id="Cpassword">
+                <input type="submit" value="Sign up">
+                <p>Already have account? <a href="signin.html">Login here</a></p>
+            </form>
         </div>
     </div>
+
 </body>
 
-<footer>
+<!-- <footer>
     <div>
         <h3>Services</h3>
         <a href="./shipping.html">Shipping</a>
@@ -96,6 +136,6 @@
         <h3>Join Us</h3>
         <a href="./career.html">Career</a>
     </div>
-</footer>
+</footer> -->
 
 </html>

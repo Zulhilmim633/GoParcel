@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <meta http-equiv="refresh" content="4" > -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>GoParcel</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
+    <style>
+        .content {
+            padding: 0;
+        }
+
+        .back {
+            height: 89vh;
+            width: 98.95vw;
+            background-image: url(./image/background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        form {
+            width: 23em;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 6px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        form input[type=text],
+        form input[type=password] {
+            padding: 7px 14px;
+            border-radius: 14px;
+            /* border: none; */
+            background-color: #e7e7e7;
+            /* border-bottom: 2px solid; */
+        }
+
+        form * {
+            margin-bottom: 15px;
+        }
+
+        form {
+            background-color: #3b3d4186;
+            border-radius: 14px;
+            padding: 20px;
+            color: white;
+        }
+
+        form input[type=submit] {
+            border: none;
+            background-color: #fce38a;
+            height: 40px;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        form a {
+            text-decoration: none;
+            color: #fce38a;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="./index.html" class="Logo">
+            <img src="./logo.png" alt="page icon">
+        </a>
+        <div class="dropdown">
+            <button class="dropbtn">Services</button>
+            <div class="dropdown-content">
+                <a href="./shipping.html">Shipping</a>
+                <a href="./Tracking.html">Track & Trace</a>
+                <a href="./pricerates.html">Price Rates</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Support</button>
+            <div class="dropdown-content">
+                <a href="./about.html">About us</a>
+                <a href="./contact.html">Contact</a>
+                <a href="./faq.html">FAQ</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Join Us</button>
+            <div class="dropdown-content">
+                <a href="./career.html">Career</a>
+            </div>
+        </div>
+        <div class="account-section">
+            <a href="signin.html"><span class="btn signin">Sign In</span></a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="back">    
+            <form action="signin.php">
+                <label for="username"><strong>Username:</strong></label>
+                <input type="text" name="username" id="username">
+                <label for="password"><strong>Password:</strong></label>
+                <input type="password" name="password" id="password">
+                <input type="submit" value="Login">
+                <p>Don't have account? <a href="signup.html">Sign Up here</a></p>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

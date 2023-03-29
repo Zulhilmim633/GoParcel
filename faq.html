@@ -10,6 +10,42 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
+    <style>
+        .faq-section {
+            width: 90%;
+        }
+
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            transition: 0.4s;
+        }
+
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            display: flex;
+            justify-content: center;
+        }
+        .panel p {
+            width: 90%;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,14 +76,119 @@
             </div>
         </div>
         <div class="account-section">
-            <span class="btn signin">Sign In</span>
+            <a href="signin.html"><span class="btn signin">Sign In</span></a>
         </div>
     </div>
     <div class="content">
-        <div class="banner">
+        <div class="faq-section">
+            <h1>Frequently Asked Questions:</h1>
+
+            <button class="accordion">Is my stuff covered for damage or loss?</button>
+            <div class="panel">
+                <p>Yes, all parcels sent via GoParcel have a protection cover of RM 237.24 for loss or damage by
+                    couriers.
+
+                    You can add more cover up to Rm 4,744.80 when booking for a small fee.</p>
+            </div>
+
+            <button class="accordion">What if I miss my delivery?</button>
+            <div class="panel">
+                <p>If you miss the delivery the courier will leave instructions on how to arrange another delivery.
+
+                    You can also arrange to collect the items from a local depot.
+
+                    you will only get 2 delivery attempts and then the item will be returned to sender.</p>
+            </div>
+
+            <button class="accordion">How long does it take to receive my item after I sent it?</button>
+            <div class="panel">
+                <p>The delivery times are displayed during booking, these times are quoted in working days. Working days
+                    are Monday - Friday, excluding public holidays. Items are not delivered on weekends. You can track
+                    your item online to see when it will be delivered.</p>
+            </div>
+
+            <button class="accordion">If I make a booking over the weekend, when will it be processed?</button>
+            <div class="panel">
+                <p>Bookings placed over the weekend will be processed on the Monday and collected at your door on
+                    Tuesday (excluding bank holidays).</p>
+            </div>
+
+            <button class="accordion">Is my parcel insured?</button>
+            <div class="panel">
+                <p>Yes, all parcels sent via GoParcel have a protection cover of €50 for loss or damage by couriers.</p>
+            </div>
+
+            <button class="accordion">What packaging can I use?</button>
+            <div class="panel">
+                <p>You can use your own boxes/packaging as long as it is suitable to safely transport your items. It is
+                    your responsibility to package all items, we do not offer a packaging service. We do not accept
+                    suitcases/bags as packaging.</p>
+            </div>
+
+            <button class="accordion">Are there any items I cannot send in my parcel?</button>
+            <div class="panel">
+                <p>Yes, please check prohibited items list.</p>
+            </div>
+
+            <button class="accordion">When will my parcel be collected?</button>
+            <div class="panel">
+                <p>Couriers are out for collection from 9 AM to 6 PM local time. Unfortunately, we cannot specify
+                    collection time frame, please book collection and have some spare time for a collection to happen.
+                    Some our partners do call and inform about the collection window, but this option is not
+                    guaranteed.Please be aware, that during major public events courier usually work overtimes to manage
+                    and collect all of the orders.If by any chance collection
+                    failed, or courier could not make it in time, please make sure to contact us – we will reschedule
+                    collection for next day</p>
+            </div>
+
+            <button class="accordion">Why my account was deducted twice?</button>
+            <div class="panel">
+                <p>If money were deducted several times, means that connection was interrupted while payment was
+                    processing. Please inform customer service about the double charge and the transaction will be
+                    refunded immediately.</p>
+            </div>
+
+            <button class="accordion">I want a Refund, how can I get it?</button>
+            <div class="panel">
+                <p>In order to receive a Refund, your order has to be cancelled, as soon as the order is cancelled you
+                    are entitled to receive a full refund. Please contact customer service to Ask for a refund, and
+                    customer service representative will issue it immediately.
+
+                    Thus, there are some rules to be entitled to a refund, more information can be found at our refund
+                    policy page.</p>
+            </div>
+
+            <button class="accordion">What if my item has been damaged?</button>
+            <div class="panel">
+                <p>Please contact us as soon as possible within 14 days of the items collection date.
+                    It is very difficult for any items to be damaged but if your items have have been damaged we have
+                    procedures in place to compensate you for damage and loss.</p>
+            </div>
+
+            <button class="accordion">What if I miss my collection or the driver does not turn up?</button>
+            <div class="panel">
+                <p>If you miss your collection please contact us as soon as possible, we will arrange another collection
+                    for you. If the driver does not show up please contact us so we can arrange another collection date
+                    or offer you a refund.</p>
+            </div>
+
         </div>
-        <div class="tracking">
-        </div>
+        <script type="text/javascript">
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                        panel.style.maxHeight = null;
+                    } else {
+                        panel.style.maxHeight = panel.scrollHeight + "px";
+                    }
+                });
+            }
+        </script>
     </div>
 </body>
 
