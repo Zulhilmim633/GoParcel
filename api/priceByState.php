@@ -7,7 +7,7 @@ function getState($stateCode)
     elseif ($stateCode >= 5000 && $stateCode <= 9810)
         return "Kedah";
     elseif ($stateCode >= 10000 && $stateCode <= 14400)
-        return "Pulau Pinang";
+        return "Penang";
     elseif ($stateCode >= 20000 && $stateCode <= 24300)
         return "Terengganu";
     elseif ($stateCode >= 93000 && $stateCode <= 98859)
@@ -41,7 +41,11 @@ function getState($stateCode)
     }
 }
 
-
+$north = ['Perlis','Kedah','Penang','Perak'];
+$east = ['Kelantan','Terengganu','Pahang'];
+$south = ['Johor','Melaka'];
+$west = ['Selangor','Negeri Sembilan','Putrjaya'];
+$east_penisular = ['labuan','Sarawak','Sabah'];
 
 function getPrice($stateFrom, $stateTo)
 {

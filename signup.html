@@ -6,18 +6,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
     <title>GoParcel</title>
     <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
+    <link rel="stylesheet" href="./CSS/shake.css">
     <style>
         .content {
             padding: 0;
         }
 
         .back {
-            height: 89vh;
+            height: 106vh;
             width: 98.95vw;
             background-image: url(./image/background.jpg);
             background-repeat: no-repeat;
@@ -37,7 +38,8 @@
         }
 
         form input[type=text],
-        form input[type=password] {
+        form input[type=password],
+        form textarea {
             padding: 7px 14px;
             border-radius: 14px;
             /* border: none; */
@@ -45,6 +47,14 @@
             /* border-bottom: 2px solid; */
         }
 
+        .exist {
+            animation: shake5 0.3s ease-in-out 0s 2;
+            border: 2px solid #ff9494;
+        }
+
+        span.existing {
+            color: #d71919;
+        }
 
         form * {
             margin-bottom: 15px;
@@ -68,6 +78,16 @@
         form a {
             text-decoration: none;
             color: #fce38a;
+        }
+
+        #respon {
+            position: absolute;
+            background-color: white;
+            font-weight: bold;
+            font-size: 29px;
+            /* padding: 337px 90px; */
+            border-radius: 14px;
+            transition: padding 0.5s;
         }
     </style>
 </head>
@@ -100,24 +120,115 @@
             </div>
         </div>
         <div class="account-section">
-            <a href="signin.html"><span class="btn signin">Sign In</span></a>
+            <a href="SignIn.html"><span class="btn signin">Sign In</span></a>
         </div>
     </div>
     <div class="content">
         <div class="back">
-            <form action="signup.php">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
+            <form>
+                <label for="userName">Username</label>
+                <input type="text" name="userName" id="userName" autocomplete="off" title="Username is required"
+                    required>
+                <label for="userEmail">Email</label>
+                <input type="text" name="userEmail" id="userEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    required>
+                <label for="userAddress">Address</label>
+                <textarea type="password" name="userAddress" id="userAddress" autocomplete="off" required></textarea>
+                <label for="userPhoneNo">Phone No</label>
+                <input type="text" name="userPhoneNo" id="userPhoneNo" autocomplete="off" pattern="[0-9]{3}-[0-9]{8}"
+                    required>
+                <label for="userPassword">Password</label>
+                <input type="password" name="userPassword" id="userPassword" required>
                 <label for="Cpassword">Confirm Password</label>
-                <input type="password" name="Cpassword" id="Cpassword">
+                <input type="password" name="Cpassword" id="Cpassword" required>
+                <p>
+                    <input type="checkbox" name="agree" id="agree"> I agree to <a href="./tos.html">Term of service</a>
+                    <br>
+                </p>
                 <input type="submit" value="Sign up">
                 <p>Already have account? <a href="signin.html">Login here</a></p>
             </form>
+            <div id="respon"></div>
         </div>
     </div>
+    <script type="text/javascript">
+        const form = document.forms[0];
+        form.userName.value = "zulhilmi"
+        form.userEmail.value = "muhammad.zulhilmizaid@gmail.com"
+        form.userAddress.value = "bangi"
+        form.userPhoneNo.value = "011-37941929"
+        form.userPassword.value = "qwerty"
+        form.Cpassword.value = "qwerty"
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
+            if (!form.agree.checked)
+                return alert("Please accept our Term of Service");
+
+            const password = form.userPassword.value;
+            const ConfirmPassword = form.Cpassword.value;
+
+            if (password == ConfirmPassword) {
+
+                const payload = new FormData(form);
+
+                let resposnse = await fetch("http://localhost/goparcel/api/userSignup.php",
+
+                    {
+                        method: "POST",
+                        body: payload
+                    })
+
+                if (form.userName.classList.contains("exist")) {
+                    form.userName.classList.remove("exist")
+                    form.userName.previousElementSibling.innerHTML = "Username";
+                }
+                if (form.userEmail.classList.contains("exist")) {
+                    form.userEmail.classList.remove("exist")
+                    form.userEmail.previousElementSibling.innerHTML = "Email";
+                }
+
+                const data = await resposnse.text();
+                console.log(data)
+                if (data.startsWith("ERROR")) {
+                    let err = data.split(";");
+                    err.pop();
+                    err.forEach((er) => {
+                        if (er.split(":")[1] == "EMAIL") {
+                            form.userEmail.classList.add("exist")
+                            console.log("email ")
+                        }
+                        if (er.split(":")[1] == "USERNAME") {
+                            form.userName.classList.add("exist")
+                            console.log("username")
+                        }
+                    })
+                    console.log(err)
+                    if (err.length == 1) {
+                        err[0].split(":")[1].toLocaleLowerCase() == "username" ? form.userName.previousElementSibling.innerHTML = "Username - <span class='existing'>Already exist</span>" : form.userEmail.previousElementSibling.innerHTML = "Email - <span class='existing'>Already exist</span>";
+                    }
+                    else {
+                        form.userName.previousElementSibling.innerHTML = "Username - <span class='existing'>Already been used</span>";
+                        form.userEmail.previousElementSibling.innerHTML = "Email - <span class='existing'>Already been used</span>";
+                    }
+                }
+                else if (data.startsWith("SUCCESS")) {
+                    localStorage.setItem("user",form.userName.value);
+                    localStorage.setItem("pass",form.userPassword.value);
+                    setTimeout(()=>{
+                        document.getElementById("respon").innerText = "Register Success"
+                        document.getElementById("respon").style.padding = "337px 90px";
+                    },850)
+                    setTimeout(()=>{
+                        window.location.href = "./index.html";
+                    },1850)
+                }
+            }
+            else {
+                return alert("Password does not match with confirm password");
+            }
+        })
+    </script>
 </body>
 
 <!-- <footer>

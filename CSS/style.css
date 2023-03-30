@@ -7,6 +7,8 @@
     background-image: linear-gradient(to bottom left, #47688d, #364f6b);;
 } */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+
 * {
     margin: 0;
     font-family: 'Noto Sans', sans-serif;
@@ -39,7 +41,7 @@ body {
     text-decoration: none;
 }
 
-.navbar a {
+.navbar > a {
     float: left;
     font-size: 16px;
     color: white;
@@ -99,16 +101,24 @@ body {
     display: block;
 }
 
-.dropdown, .account-section {
+.dropdown,
+.account-section {
     margin-top: 10px;
 }
 
 .account-section {
     right: 10px;
     position: absolute;
-    padding: 18px 0 0 20px;
+    padding: 9px 0 0 20px;
     display: flex;
     flex-direction: row;
+    top: 14px;
+}
+
+.account-section a {
+    padding: 0;
+    text-decoration: none;
+    color: #333333;
 }
 
 .account-section .btn {
@@ -120,7 +130,7 @@ body {
 
 .signin {
     margin-right: 34px;
-    border : #fbe289 2px solid;
+    border: #fbe289 2px solid;
     background-color: #fbe289;
 }
 
@@ -130,6 +140,7 @@ body {
     opacity: .7;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
 }
+
 .content {
     display: flex;
     flex-direction: column;
@@ -137,6 +148,54 @@ body {
     align-items: center;
     padding: 50px 0 66px 0;
 }
+
+.x {
+    filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(13deg) brightness(101%) contrast(102%);
+    padding: 13px 0px 0px 13px;
+    height: 27px;
+}
+
+.close {
+    display: none;
+}
+
+.drop-section {
+    position: fixed;
+    height: 100vh;
+    right: 0;
+    top: 0;
+    background-color: #0f0f0f94;
+    animation: 1.7s cubic-bezier(.25, 1, .30, 1) wipe-in-left both;
+}
+
+.each-section img {
+    filter: invert(100%) sepia(0%) saturate(1%) hue-rotate(13deg) brightness(101%) contrast(102%);
+    padding-right: 15px;
+}
+
+.each-section {
+    border-top: 1px solid #fbfcfc;
+    border-bottom: 1px solid #fbfcfc;
+}
+
+.each-section > a , .logout{
+    display: flex;
+    align-items: center;
+    width: 25em;
+    text-decoration: none;
+    color: white;
+}
+
+.each-section > a:hover ,.logout:hover {
+    background-color: #ffffff65;
+}
+
+.profile {
+    color: white;
+    border: none;
+    padding: 24px;
+}
+
 
 footer {
     background-color: #333333;
@@ -177,4 +236,24 @@ footer>div>a:hover {
 
 span.required {
     color: #cc1320;
+}
+
+@keyframes wipe-in-left {
+    from {
+        clip-path: inset(0 0 0 100%);
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes wipe-in-right {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+    }
 }
