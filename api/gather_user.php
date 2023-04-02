@@ -5,15 +5,11 @@ include("db_connect.php");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(filter_var($_POST['userName'], FILTER_VALIDATE_EMAIL)){
         $e = mysqli_real_escape_string($connect, $_POST['userName']);
-        $p = mysqli_real_escape_string($connect, $_POST['userPassword']);
-        $q = "SELECT * FROM user WHERE (userEmail = '$e'
-        AND userPassword = '$p')";
+        $q = "SELECT * FROM user WHERE userEmail = '$e'";
     }
     else {
         $n = mysqli_real_escape_string($connect, $_POST['userName']);
-        $p = mysqli_real_escape_string($connect, $_POST['userPassword']);
-        $q = "SELECT * FROM user WHERE (userName = '$n'
-        AND userPassword = '$p')";
+        $q = "SELECT * FROM user WHERE userName = '$n'";
     }
 
     $result = mysqli_query($connect, $q);

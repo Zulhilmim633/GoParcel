@@ -10,7 +10,7 @@ async function test() {
     payload.append("userPassword", pass)
     // console.log(payload)
 
-    const response = await fetch("http://localhost/goparcel/api/gather_user.php",
+    const response = await fetch("http://localhost/goparcel/api/userSignin.php",
         {
             method: "POST",
             body: payload
@@ -28,21 +28,22 @@ async function test() {
                 Manage account
             </a>
         </div>
-        <div class="each-section order">
-            <a href="">
-                <img src="./icon/order.svg">
-                Manage order
-            </a>
-        </div>
         <div class="each-section logout">
                 <img src="./icon/logout.svg">
                 Logout
         </div>
     </div>`
+
+        //     <div class="each-section order">
+        //     <a href="">
+        //         <img src="./icon/order.svg">
+        //         Manage order
+        //     </a>
+        // </div>
         const account = document.querySelector(".account-section")
         account.style.right = "36px"
         account.style.top = "-7px"
-        account.innerHTML = "<img src='./icon/user.svg' style='height: 37px;border: 3px solid black;border-radius: 40px;padding: 9px;'>"
+        account.innerHTML = "<img src='./icon/user.svg' style='height: 37px;border: 3px solid black;border-radius: 40px;padding: 9px;cursor: pointer;'>"
         account.addEventListener("click", (e) => {
             const drop = document.querySelector(".drop-section")
             drop.classList.remove("close")

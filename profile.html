@@ -12,8 +12,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
-    <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="shake.css">
+    <link rel="stylesheet" href="./CSS/shake.css">
     <script src="./JS/autologin.js" defer></script>
     <style>
         .content {
@@ -141,7 +140,7 @@
                 <input type="text" name="userEmail" id="userEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     required readonly>
                 <label for="userAddress">Address</label>
-                <textarea type="password" name="userAddress" id="userAddress" autocomplete="off" required></textarea>
+                <textarea style="resize: none;" type="password" name="userAddress" id="userAddress" autocomplete="off" required></textarea>
                 <label for="userPhoneNo">Phone No</label>
                 <input type="text" name="userPhoneNo" id="userPhoneNo" autocomplete="off" pattern="[0-9]{3}-[0-9]{8}"
                     required>
@@ -157,5 +156,5 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript" src="update.js"></script>
+    <script type="text/javascript" src="./JS/update.js"></script>
 </body>

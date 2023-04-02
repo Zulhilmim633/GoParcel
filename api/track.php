@@ -1,26 +1,24 @@
 
 <?php
     include("db_connect.php");
-
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        $tracking = $_GET['number'];
+        $q = "SELECT * FROM tracking WHERE trackingNo = '$tracking'";
     
-    if(isset($_POST['id']) or isset($_GET['id']))
-    {
-        $id = isset($_POST['id']) ? $_POST['id'] : $_GET['id'];
-        $id = mysqli_real_escape_string($connect, $id);
-        
-        $q = "SELECT Sender_Name, Sender_Address, Receiver_Name,
-        Receiver_Address, Delivery_date, Parcel_Status 
-        FROM parcel WHERE Track_ID = '$id'";
-
-        $result = @mysqli_query($connect, $q);
-
-        if($result)
-        {
-            
+        $result = mysqli_query($connect, $q);
+    
+        if (@mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    
+            echo "SUCCESS:";
+            echo $row['trackingNo'].";".$row['status'].";".$row['pickupLoc'].";".$row['inTransitLoc'];
+    
+            exit();
+            mysqli_free_result($result);
+        } else {
+            $er = filter_var($_POST['userName'], FILTER_VALIDATE_EMAIL) ? "ERROR:Email does not match with password" : "ERROR:Username does not match with password";
+            echo $er;
         }
-    }
-    else
-    {
-        echo "<p class='req_erorr'>This is api. Required to make a POST or GET of id to get a response</p>";
+        mysqli_close($connect);
     }
 ?>

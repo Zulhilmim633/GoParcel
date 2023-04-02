@@ -5,7 +5,7 @@
 .banner {
     height: 91vh;
     width: 98.95vw;
-    background-image: url("./image/backdrop.jpg");
+    background-image: url("../image/backdrop.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

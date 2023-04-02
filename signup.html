@@ -127,13 +127,13 @@
         <div class="back">
             <form>
                 <label for="userName">Username</label>
-                <input type="text" name="userName" id="userName" autocomplete="off" title="Username is required"
+                <input type="text" name="userName" id="userName" pattern="^\S{1,70}$" title="Please make sure no space" autocomplete="off" title="Username is required"
                     required>
                 <label for="userEmail">Email</label>
                 <input type="text" name="userEmail" id="userEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                     required>
                 <label for="userAddress">Address</label>
-                <textarea type="password" name="userAddress" id="userAddress" autocomplete="off" required></textarea>
+                <textarea style="resize: none;" type="password" name="userAddress" id="userAddress" autocomplete="off" required></textarea>
                 <label for="userPhoneNo">Phone No</label>
                 <input type="text" name="userPhoneNo" id="userPhoneNo" autocomplete="off" pattern="[0-9]{3}-[0-9]{8}"
                     required>

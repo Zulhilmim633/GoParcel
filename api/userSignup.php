@@ -66,7 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = @mysqli_query($connect, $q);
     if ($result) {
         echo "SUCCESS";
-        exit();
     } else {
         echo "System Error";
         echo mysqli_error($connect) . " Query: $q";

@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $result = mysqli_query($connect, $q);
 
     if (@mysqli_num_rows($result) == 1) {
-        session_start();
-        $_SESSION = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        echo "SUCCESS";
-
+        echo "SUCCESS:";
+        echo $row['userName'].";".$row['FullName'].";".$row['userEmail'].";".$row['userAddress'].";".$row['userPhoneNo'].";".$row['userPassword'];
+        
         exit();
 
         mysqli_free_result($result);

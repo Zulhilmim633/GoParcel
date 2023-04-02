@@ -13,10 +13,10 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
     <script src="./JS/autologin.js" defer></script>
+    <script src="./JS/tracking.js" defer></script>
 </head>
 
 <body>
-    <script src="./tracking.js" defer></script>
     <div class="navbar">
         <a href="./index.html" class="Logo">
             <img src="./logo.png" alt="page icon">
@@ -54,9 +54,10 @@
         </div>
         <div class="Track">
             <form>
-                <input class="tracknumber" type="text" autocomplete="off" name="number" id="number" placeholder="Tracking Number..." required>
+                <input class="tracknumber" type="text" autocomplete="off" name="number" id="number"
+                    placeholder="Tracking Number..." required>
                 <button type="submit">
-                    <img src="./search.svg" alt="" srcset="">
+                    <img src="./icon/search.svg" alt="" srcset="">
                 </button>
             </form>
         </div>
@@ -127,19 +128,79 @@
             </div>
             <div class="progress-bar"></div>
             <div class="location">
-                <span>In pickup</span>
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </div>
 
     </div>
     <script>
-        const btn = document.forms[0]
+        const form = document.forms[0]
         const banner = document.querySelector(".tracking")
-        btn.addEventListener("submit",()=>{
-            if(banner.style.display == 'none')
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault()
+            const response = await fetch(`http://localhost/goparcel/api/track.php?number=${form.number.value}`)
+            const data = await response.text()
+            console.log(data)
+            let way = ["Pickup", "Transit", "Delivery", "Delivered"]
+            if (data.trim().startsWith("SUCCESS")) {
+                let res = data.split(":")[1]
+                let n = way.indexOf(res.split(";")[1])
+                console.log(n)
+                const circle = document.querySelector(".circle")
+                const location = document.querySelector(".location")
+                const progress= document.querySelector(".progress-bar")
+                if (n == 0) {
+                    circle.innerHTML = `<span class="active"></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>`
+                    location.innerHTML = `<span>${res.split(";")[2]}</span>
+                <span></span>
+                <span></span>
+                <span></span>`
+                setTimeout(() => {
+                    progress.style.width = "0em"
+                }, 720);
+                }
+                else if( n==1){
+                    circle.innerHTML = `<span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>
+                        <span></span>`
+                    location.innerHTML = `<span>${res.split(";")[2]}</span>
+                <span>${res.split(';')[3]}</span>
+                <span></span>
+                <span></span>`
+                setTimeout(() => {
+                    progress.style.width = "14.8em"
+                }, 720);
+                }else if( n==2){
+                    circle.innerHTML = `<span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span></span>`
+                    location.innerHTML = `<span>${res.split(";")[2]}</span>
+                <span>${res.split(';')[3]}</span>
+                <span>Being Deliver</span>
+                <span>Delivered</span>`
+                setTimeout(() => {
+                    progress.style.width = "29.4em"
+                }, 720);
+                }else if( n==3){
+                    circle.innerHTML = `<span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>
+                        <span class="active"></span>`
+                    location.innerHTML = `<span>${res.split(";")[2]}</span>
+                <span>${res.split(';')[3]}</span>
+                <span>Being Deliver</span>
+                <span>Delivered</span>`
+                setTimeout(() => {
+                    progress.style.width = "44em"
+                }, 720);
+                }
+
+            }
+            if (banner.style.display == 'none')
                 banner.style.display = "block";
         })
     </script>

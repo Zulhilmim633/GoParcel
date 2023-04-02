@@ -116,7 +116,7 @@
         <div class="back">
             <form action="signin.php">
                 <label for="userName"><strong>Email or Username</strong></label>
-                <input type="text" name="userName" id="userName" autocomplete="off" required>
+                <input type="text" name="userName" id="userName" pattern="^\S{1,70}$" title="Please make sure no space" autocomplete="off" required>
                 <label for="userPassword"><strong>Password</strong></label>
                 <input type="password" name="userPassword" id="userPassword" autocomplete="off" required>
                 <input type="submit" value="Login">
@@ -140,7 +140,7 @@
                 });
             let data = await response.text();
 
-            if (data == "SUCCESS") {
+            if (data.startsWith("SUCCESS")) {
                 localStorage.setItem("user", form.userName.value);
                 localStorage.setItem("pass", form.userPassword.value);
                 setTimeout(() => {

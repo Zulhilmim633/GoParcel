@@ -41,7 +41,7 @@
             margin-top: 20px;
         }
 
-        .container input {
+        .container button {
             bottom: -68px;
             position: relative;
             border: none;
@@ -52,7 +52,7 @@
             cursor: pointer;
         }
 
-        .container input:hover {
+        .container button:hover {
             box-shadow: 6px 5px 6px rgba(0, 0, 0, 0.5);
             color: #fbe289;
         }
@@ -94,31 +94,31 @@
     <div class="content">
         <h1 style="margin-bottom: 42px;">Shipping Category</h1>
         <div class="section">
-            <div class="container">
+            <div class="container r">
                 <div class="image">
                     <img src="./image/one-time-order.png" alt="">
                 </div>
                 <h2>One Time Order</h2>
                 <ul style="margin-bottom: 22px;padding-right: 32px;">
-                    <li>Quick order</li>
+                    <li>Quick order without register</li>
                     <li>30KG maximum weight</li>
-                    <li>Parcels or documents</li>
+                    <li>Parcels</li>
                 </ul>
-                <input type="button" value="Order Now">
+                <button onclick="window.location.href = './oneTime.html'">Order Now</button>
             </div>
-            <div class="container">
+            <div class="container a">
                 <div class="image">
                     <img src="./image/standard-deliveery.png" alt="">
                 </div>
-                <h2>Single / Bulk Order</h2>
+                <h2>Standard Order</h2>
                 <ul style="margin-bottom: 22px;padding-right: 32px;">
-                    <li>Make Single or bulk order</li>
+                    <li>Make a order</li>
                     <li>30KG maximum weight</li>
-                    <li>Parcels or documents</li>
+                    <li>Parcels</li>
                 </ul>
-                <input type="button" value="Order Now">
+                <button onclick="window.location.href = './order.html'">Order Now</button>
             </div>
-            <div class="container">
+            <div class="container a">
                 <div class="image">
                     <img src="./image/express.jpg" alt="">
                 </div>
@@ -129,10 +129,15 @@
                     <li>Guarantee Next Day Delivery</li>
                     <li>5 KG and below</li>
                 </ul>
-                <input type="button" value="Order Now">
+                <button onclick="window.location.href = './ndd.html'">Order Now</button>
             </div>
         </div>
     </div>
+    <script>
+        if(localStorage.getItem("user")){
+            document.querySelector(".container.r").style.display = "none"
+        }
+    </script>
 </body>
 
 <footer>

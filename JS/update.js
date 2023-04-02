@@ -8,7 +8,7 @@ async function load() {
     payload.append("userName", user)
     payload.append("userPassword", passw)
 
-    const response = await fetch("http://localhost/goparcel/api/gather_user.php",
+    const response = await fetch("http://localhost/goparcel/api/userSignin.php",
         {
             method: "POST",
             body: payload

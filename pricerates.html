@@ -15,6 +15,7 @@
             width: 80%;
             display: flex;
             justify-content: center;
+            margin-bottom: 32px;
         }
 
         input[type=text] {
@@ -42,17 +43,35 @@
             width: 17em;
             margin-top: 8px;
         }
+
         .rate form {
             display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        .result table,
+        .result th,
+        .result td {
+            border: 1.25px solid rgb(0, 0, 0);
+            border-collapse: collapse;
+            padding: 6px;
+            text-align: center;
+        }
+
+        .result table {
+            box-shadow: 6px 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .result td {
+            padding: 5px 30px 5px 30px;
         }
     </style>
     <script src="./JS/autologin.js" defer></script>
 </head>
 
 <body>
-    <script type="text/javascript" src="pricerates.js" defer></script>
+    <script type="text/javascript" src="./JS/pricerates.js" defer></script>
     <div class="navbar">
         <a href="./index.html" class="Logo">
             <img src="./logo.png" alt="page icon">
@@ -86,14 +105,14 @@
     <div class="content">
         <h1 style="color:#858585;"><b>Shipping Rates</b></h1>
         <div class="rate">
-            <form action="pricerates.php">
+            <form>
                 <table>
                     <tr>
                         <td>
                             <label for="shipFrom"><span class="required">*</span>Postcode (FROM)</label>
                         </td>
                         <td>
-                            <input type="text" id="shipFrom" name="shipFrom" required>
+                            <input type="text" id="shipFrom" name="shipFrom" autocomplete="off" required>
                         </td>
                     </tr>
                     <tr>
@@ -101,7 +120,7 @@
                             <label for="shipTo"><span class="required">*</span>Postcode (TO)</label>
                         </td>
                         <td>
-                            <input type="text" id="shipTo" name="shipTo" required>
+                            <input type="text" id="shipTo" name="shipTo" autocomplete="off" required>
                         </td>
                     </tr>
                     <tr>
@@ -109,28 +128,15 @@
                             <label for="weight"><span class="required">*</span>Weight (KG)</label>
                         </td>
                         <td>
-                            <input type="text" id="weight" name="weight" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="shipment">Shipping Type</label>
-                        </td>
-                        <td>
-                            <select name="shipmet" id="shipmet">
-                                <option value="REG">Regular</option>
-                                <option value="EXP">Next Day Delivery</option>
-                            </select>
+                            <input type="text" id="weight" name="weight" autocomplete="off" required>
                         </td>
                     </tr>
                 </table>
                 <input type="submit" value="Check" class="check-btn">
             </form>
         </div>
-        <div>
-            <table>
-                <td></td>
-            </table>
+        <div class="result">
+
         </div>
     </div>
     <script>
@@ -138,6 +144,9 @@
         document.forms[0].shipFrom.value = que.searchParams.get("postcodeFrom")
         document.forms[0].shipTo.value = que.searchParams.get("postcodeTo")
         document.forms[0].weight.value = que.searchParams.get("weight")
+        setTimeout(() => {
+            document.querySelector(".check-btn").click()
+        }, 150);
     </script>
 </body>
 

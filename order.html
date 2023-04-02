@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <title>GoParcel</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
+    <script src="./JS/autologin.js" defer></script>
+    <script>
+        let t = localStorage.getItem("user")
+        if (t == null) {
+            alert("Required login first")
+            window.history.back()
+        }
+    </script>
+    <style>
+        .about {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            margin-bottom: 42px;
+        }
+
+        .about h1 {
+            margin-bottom: 31px;
+        }
+
+        .advantage {
+            position: relative;
+            left: -503px;
+        }
+
+        .advantage ul li {
+            padding: 13px;
+        }
+
+        .about p,
+        .advantage ul li {
+            color: #787878;
+        }
+
+        .content {
+            padding: 0 0 50px 0;
+        }
+
+        .back {
+            background-color: #eeeeee;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            margin-bottom: 33px;
+        }
+
+        .form {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        input[type=text],
+        textarea,
+        select,
+        input[type=number] {
+            margin-left: 15px;
+        }
+
+        input[type=text] {
+            margin-bottom: 7px;
+        }
+
+        td {
+            padding: 11px;
+        }
+
+        select {
+            width: 189px;
+            height: 26px;
+        }
+
+        .parcel-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        table {
+            border: 2px solid black;
+            border-spacing: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .respon {
+            position: absolute;
+            width: 765px;
+            height: 361px;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 33px;
+            font-weight: bold;
+            animation: 2.5s cubic-bezier(.25, 1, .30, 1) square-in-hesitate both;
+        }
+
+        @keyframes square-in-hesitate {
+            0% {
+                clip-path: inset(100% 100% 100% 100%);
+            }
+
+            /* 40% {
+                clip-path: inset(33% 33% 33% 33%);
+            } */
+
+            100% {
+                clip-path: inset(0 0 0 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="./index.html" class="Logo">
+            <img src="./logo.png" alt="page icon">
+        </a>
+        <div class="dropdown">
+            <button class="dropbtn">Services</button>
+            <div class="dropdown-content">
+                <a href="./shipping.html">Shipping</a>
+                <a href="./Tracking.html">Track & Trace</a>
+                <a href="./pricerates.html">Price Rates</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Support</button>
+            <div class="dropdown-content">
+                <a href="./about.html">About us</a>
+                <a href="./contact.html">Contact</a>
+                <a href="./faq.html">FAQ</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Join Us</button>
+            <div class="dropdown-content">
+                <a href="./career.html">Career</a>
+            </div>
+        </div>
+        <div class="account-section">
+            <a href="signin.html"><span class="btn signin">Sign In</span></a>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Insert parcel detail</h1>
+        <div class="container">
+            <form>
+                <div class="sender-section">
+                    <h2>Sender Details</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form">
+                                    <label for="senderName">Name</label>
+                                    <input type="text" name="senderName" id="senderName" autocomplete="off" required>
+                                </div>
+                                <div class="form">
+                                    <label for="senderPhoneNo">Phone No</label>
+                                    <input type="text" name="senderPhoneNo" id="senderPhoneNo" autocomplete="off"
+                                        required>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form">
+                                    <label for="senderAddress">Address</label>
+                                    <textarea style="resize: none;height: 56px;width: 359px;" type="text"
+                                        name="senderAddress" id="senderAddress" size="150" autocomplete="off"
+                                        required></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="receiver-section">
+                    <h2>Receiver Details</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form">
+                                    <label for="receiverName">Name</label>
+                                    <input type="text" name="receiverName" id="receiverName" autocomplete="off"
+                                        required>
+                                </div>
+                                <div class="form">
+                                    <label for="receiverPhoneNo">Phone No</label>
+                                    <input type="text" name="receiverPhoneNo" id="receiverPhoneNo" autocomplete="off"
+                                        required>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form">
+                                    <label for="receiverAddress">Address</label>
+                                    <textarea style="resize: none;height: 56px;width: 359px;" type="text"
+                                        name="receiverAddress" id="receiverAddress" size="150" autocomplete="off"
+                                        required></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="parcel-section">
+                    <h2>Parcel Details</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form">
+                                    <label for="detail">Goods Detail</label>
+                                    <input type="text" name="detail" id="detail" required>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form">
+                                    <label for="weight">Weight (KG)</label>
+                                    <input type="number" name="weight" id="weight" min="0" max="30" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form">
+                                    <label for="value">Goods Value</label>
+                                    <input type="text" name="value" id="value" autocomplete="off" required>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form">
+                                    <label for="payBy">Payment By</label>
+                                    <select name="payBy" id="payBy">
+                                        <option value="sender">Sender</option>
+                                        <option value="receiver">Receiver</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="form" style="display: flex;justify-content: center;">
+                                    <input type="submit" value="Place Order">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <script>
+        const form = document.forms[0]
+
+        async function load() {
+            const user = localStorage.getItem("user")
+            const pass = localStorage.getItem("pass")
+
+            const payload = new FormData();
+            payload.append("userName", user)
+            payload.append("userPassword", pass)
+            // console.log(payload)
+
+            const response = await fetch("http://localhost/goparcel/api/userSignin.php",
+                {
+                    method: "POST",
+                    body: payload
+                });
+            let data = await response.text();
+            if(data.startsWith("SUCCESS")){
+                form.senderName.value = data.split(";")[1]
+                form.senderAddress.value = data.split(";")[3]
+                form.senderPhoneNo.value = data.split(";")[4]
+            }
+        }
+        load()
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const payload = new FormData(form);
+            payload.append("shippingType", "regular")
+
+            const response = await fetch("http://localhost/goparcel/api/placeOrder.php",
+                {
+                    method: "POST",
+                    body: payload
+                })
+            const data = await response.text();
+            if (data.startsWith("SUCCESS")) {
+                document.querySelector(".container").innerHTML += `<div class="respon">Order has been placed please prepare the money</div>`;
+                setTimeout(() => {
+                    window.location.href = './shipping.html'
+                }, 3500);
+            }
+        })
+    </script>
+</body>
+
+<footer>
+    <div>
+        <h3>Services</h3>
+        <a href="./shipping.html">Shipping</a>
+        <a href="./Tracking.html">Track & Trace</a>
+    </div>
+    <div>
+        <h3>Support</h3>
+        <a href="./about.html">About us</a>
+        <a href="./contact.html">Contact</a>
+        <a href="./faq.html">FAQ</a>
+    </div>
+    <div>
+        <h3>Join Us</h3>
+        <a href="./career.html">Career</a>
+    </div>
+</footer>
+
+</html>
