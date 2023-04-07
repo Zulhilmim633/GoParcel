@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <meta http-equiv="refresh" content="5" > -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
+    <title>GoParcel</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+    <link rel="stylesheet" href="../CSS/shake.css">
+    <script src="../JS/admin.js" defer></script>
+    <script>
+        async function Delete(user){
+            const payload = new FormData()
+            payload.append("user",user)
+            const response = await fetch("http://localhost/goparcel/userDelete.php",
+            {
+                method:"POST",
+                body: payload
+            })
+            const data = await response.text();
+        }
+    </script>
+    <!-- <script src="./JS/autologin.js" defer></script> -->
+    <style>
+        .content {
+            padding: 0;
+        }
+
+        body {
+            background-color: #3b3d41;
+        }
+
+        /* .back {
+            height: 106vh;
+            width: 98.95vw;
+            background-image: url(./image/background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        } */
+
+        form {
+            width: 95vw;
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input[type=text],
+        form input[type=password],
+        form textarea {
+            padding: 7px 14px;
+            border-radius: 14px;
+            /* border: none; */
+            background-color: #e7e7e7;
+            /* border-bottom: 2px solid; */
+        }
+
+        .exist {
+            animation: shake5 0.3s ease-in-out 0s 2;
+            border: 2px solid #ff9494;
+        }
+
+        span.existing {
+            color: #d71919;
+        }
+
+        form * {
+            margin-bottom: 15px;
+        }
+
+        form {
+            background-color: #3b3d41;
+            padding: 30px;
+            color: white;
+        }
+
+        form input[type=submit] {
+            border: none;
+            background-color: #fce38a;
+            height: 40px;
+            border-radius: 9px;
+            cursor: pointer;
+            width: 10%;
+        }
+
+        form a {
+            text-decoration: none;
+            color: #fce38a;
+        }
+
+        #respon {
+            position: absolute;
+            background-color: white;
+            font-weight: bold;
+            font-size: 29px;
+            /* padding: 337px 90px; */
+            border-radius: 14px;
+            transition: padding 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="./index.html" class="Logo">
+            <img src="../image/logo.png" alt="page icon">
+        </a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./userList.html'">User List</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./adminList.html'">Admin List</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./parcelList.html'">Parcel List</button>
+        </div>
+        <div class="account-section">
+            <a href="./adminSignIn.html"><span class="btn signin">Sign In</span></a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="back">
+            <form>
+                <H1>Edit account detail</H1>
+                <label for="userName">Username</label>
+                <input type="text" name="userName" id="userName" autocomplete="off" title="Username is required"
+                    required>
+                <label for="FullName">Full Name same as IC</label>
+                <input type="text" name="FullName" id="FullName" autocomplete="off" title="Username is required"
+                    required>
+                <label for="userEmail">Email</label>
+                <input type="text" name="userEmail" id="userEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    required readonly>
+                <label for="userAddress">Address</label>
+                <textarea style="resize: none;" type="password" name="userAddress" id="userAddress" autocomplete="off"
+                    required></textarea>
+                <label for="userPhoneNo">Phone No</label>
+                <input type="text" name="userPhoneNo" id="userPhoneNo" autocomplete="off" pattern="[0-9]{3}-[0-9]{8}"
+                    required>
+                <br>
+                <br>
+                <label for="newPass">New Password</label>
+                <input type="password" name="newPass" id="newPass">
+                <input type="submit" value="Update">
+            </form>
+        </div>
+    </div>
+    <script>
+        const form = document.forms[0]
+        async function load() {
+            const payload = new FormData();
+            const que = new URL(window.location.href)
+            payload.append("userName", que.searchParams.get("user"))
+            const response = await fetch("http://localhost/goparcel/api/gather_user.php",
+                {
+                    method: "POST",
+                    body: payload
+                })
+            let data = await response.text();
+            console.log(data)
+            if (data.startsWith("ERROR")) {
+                alert("Please Sign in first")
+                window.location.href = "./SignIn.html"
+            }
+            let res = data.split(":")[1].split(";");
+            form.userName.value = res[0]
+            form.FullName.value = res[1]
+            form.userEmail.value = res[2]
+            form.userAddress.value = res[3]
+            form.userPhoneNo.value = res[4]
+
+            oldPassword = res[5]
+        }
+        load()
+        form.addEventListener("submit", async (e) => {
+            let keys = Object.keys(form)
+            keys.forEach((item, index) => {
+                form[item].value = form[item].value.trim()
+                if (form[item].classList.contains("exist")) {
+                    console.log(form[item])
+                    form[item].classList.remove("exist")
+                    console.log(form[item])
+                    let temp_text = form[item].previousElementSibling.innerHTML
+                    form[item].previousElementSibling.innerHTML = temp_text.split(" - ")[0]
+                }
+            })
+            e.preventDefault();
+
+
+            setTimeout(async () => {
+                if (form.FullName.value == "") {
+                    form.FullName.classList.add("exist")
+                    form.FullName.previousElementSibling.innerHTML = "Full Name same as IC - <span class='existing'>Cannot be empty</span>";
+
+                }
+                else {
+
+                    const payload = new FormData(form);
+                    payload.delete("oldPass")
+                    payload.delete("newPass")
+                    payload.delete("CPass")
+                    payload.append("userPassword", oldPassword)
+
+                    let resposnse = await fetch("http://localhost/goparcel/api/userUpdate.php",
+
+                        {
+                            method: "POST",
+                            body: payload
+                        })
+                    const data = await resposnse.text();
+                    console.log(data)
+                    if (data.startsWith("ERROR")) {
+                        let err = data.split(";");
+                        err.pop();
+                        err.forEach((er) => {
+                            if (er.split(":")[1] == "EMAIL") {
+                                form.userEmail.classList.add("exist")
+                                console.log("email ")
+                            }
+                            if (er.split(":")[1] == "USERNAME") {
+                                form.userName.classList.add("exist")
+                                console.log("username")
+                            }
+                        })
+                        console.log(err)
+                        if (err.length == 1) {
+                            err[0].split(":")[1].toLocaleLowerCase() == "username" ? form.userName.previousElementSibling.innerHTML = "Username - <span class='existing'>Already exist</span>" : form.userEmail.previousElementSibling.innerHTML = "Email - <span class='existing'>Already exist</span>";
+                        }
+                        else {
+                            form.userName.previousElementSibling.innerHTML = "Username - <span class='existing'>Already been used</span>";
+                            form.userEmail.previousElementSibling.innerHTML = "Email - <span class='existing'>Already been used</span>";
+                        }
+                    }
+                    else {
+                        alert("Successly update user")
+                        window.location.href="./userList.html"
+                    }
+
+                }
+            }, 50)
+        })
+    </script>
+</body>

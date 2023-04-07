@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoParcel - ADMIN</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <script src="../JS/admin.js" defer></script>
+    <script>
+        const prior = localStorage.getItem("prior")
+        if(prior==null){
+            alert("Your account cannot be used in admin")
+            window.location.href="./adminSignIn.html"
+        }
+    </script>
+    <script>
+        async function Delete(user) {
+            const payload = new FormData()
+            payload.append("user", user)
+            const response = await fetch("http://localhost/goparcel/api/userDelete.php",
+                {
+                    method: "POST",
+                    body: payload
+                })
+            const data = await response.text();
+            if(data.startsWith("DELETE")){
+                alert(`${user} has been deleted`)
+                window.location.reload()
+            }
+        }
+        function ask(user) {
+            if (confirm(`Are you sure delete ${user}?`)) {
+                Delete(user);
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #222d32;
+        }
+
+        .searchbar {
+            position: absolute;
+            right: 94px;
+            top: 112px;
+        }
+
+        .searchbar form {
+            display: flex;
+            height: 32px;
+        }
+
+        .searchbar form>button>img {
+            height: 27px;
+        }
+
+        .content {
+            margin-top: 28px;
+        }
+
+        table {
+            border-spacing: 0;
+            border: 2px solid black;
+            background-color: #fbfcfc;
+            border-radius: 16px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="./index.html" class="Logo">
+            <img src="../image/logo.png" alt="page icon">
+        </a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./userList.html'">User List</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./adminList.html'">Admin List</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./parcelList.html'">Parcel List</button>
+        </div>
+        <div class="account-section">
+            <a href="./adminSignIn.html"><span class="btn signin">Sign In</span></a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="container">
+            <h1 style="color: white;">Parcel list</h1>
+            <div class="searchbar">
+                <form id="search">
+                    <input type="search" name="parcelID" id="parcelID" placeholder="Parcel Id">
+                    <button type="submit">
+                        <img src="../icon/search.svg" alt="Search">
+                    </button>
+                </form>
+            </div>
+            <div class="section">
+                <table>
+                    <tr>
+                        <th>Sender</th>
+                        <th>Phone No</th>
+                        <th>From</th>
+                        <th>Receiver</th>
+                        <th>Phone No</th>
+                        <th>To</th>
+                        <th>Pay by</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        async function load() {
+            const response = await fetch("http://localhost/goparcel/api/parcelList.php")
+            const data = await response.text();
+            document.querySelector(".section").innerHTML = data;
+        }
+        load()
+
+        const form = document.forms[0]
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault()
+            const payload = new FormData(form)
+            let response = await fetch("http://localhost/goparcel/api/parcelSearch.php",
+
+                {
+                    method: "POST",
+                    body: payload
+                })
+            const data = await response.text();
+            document.querySelector(".section").innerHTML = data;
+        })
+    </script>
+</body>
+
+</html>

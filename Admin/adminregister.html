@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoParcel - ADMIN</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./icon/favicon-16x16.png">
+    <link rel="stylesheet" href="./CSS/shake.css">
+    <style>
+        body {
+            background: #222D32;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-box {
+            margin-top: 94px;
+            height: auto;
+            background: #1A2226;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            width: 32vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            outline: 0px;
+        }
+
+        input[type=text] {
+            background-color: #1A2226;
+            border: none;
+            border-bottom: 2px solid #0DB8DE;
+            border-top: 0px;
+            border-radius: 0px;
+            font-weight: bold;
+            outline: 0;
+            margin-bottom: 20px;
+            padding-left: 0px;
+            color: #ECF0F5;
+            width: 367px;
+        }
+
+        input[type=password] {
+            background-color: #1A2226;
+            border: none;
+            border-bottom: 2px solid #0DB8DE;
+            border-top: 0px;
+            border-radius: 0px;
+            font-weight: bold;
+            outline: 0;
+            padding-left: 0px;
+            margin-bottom: 20px;
+            color: #ECF0F5;
+            width: 367px;
+        }
+
+        .form-control:focus {
+            border-color: inherit;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-bottom: 2px solid #0DB8DE;
+            outline: 0;
+            background-color: #1A2226;
+            color: #ECF0F5;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0;
+        }
+
+        label {
+            margin-bottom: 0px;
+        }
+
+        .login-title {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ECF0F5;
+        }
+
+        .form-control-label {
+            font-size: 10px;
+            color: #6C6C6C;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline-primary {
+            border-color: #0DB8DE;
+            color: #0DB8DE;
+            border-radius: 0px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background-color: #00000000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            margin-bottom: 40px;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #0DB8DE;
+            right: 0px;
+            color: white;
+        }
+
+        .login-btn a {
+            text-decoration: none;
+            border: 1px solid;
+            margin-right: 36px;
+            padding: 0px 4px 0px 4px;
+            border-radius: 3px;
+        }
+
+        .login-btn {
+            margin-top: 27px;
+        }
+
+        .exist {
+            animation: shake5 0.3s ease-in-out 0s 2;
+        }
+
+        span.existing {
+            color: #d71919;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div class="login-title">
+                ADMIN PANEL
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="adminName" class="form-control-label">USERNAME</label>
+                    <input type="text" name="adminName" id="adminName" pattern="^\S{1,70}$" title="Please make sure no space" class="form-control" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminEmail" class="form-control-label">EMAIL</label>
+                    <input type="text" name="adminEmail" id="adminEmail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPhone" class="form-control-label">PHONE NO</label>
+                    <input type="text" name="adminPhone" id="adminPhone" class="form-control" autocomplete="off"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword" class="form-control-label">PASSWORD</label>
+                    <input type="password" name="adminPassword" id="adminPassword" class="form-control"
+                        autocomplete="off" required>
+                </div>
+                <label class="form-control-label">
+                    ALREADY HAVE ACCOUNT? CLICK
+                    <a href="./adminSignIn.html" class="btn-outline-primary">HERE</a>
+                    <br>
+                </label>
+                <div class="login-btn">
+                    <input type="submit" value="REGISTER" class="btn-outline-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        const form = document.forms[0];
+        form.addEventListener("submit", async (e) => {
+            let keys = Object.keys(form)
+            keys.forEach((item, index) => {
+                form[item].value = form[item].value.trim()
+                if (form[item].classList.contains("exist")) {
+                    console.log(form[item])
+                    form[item].classList.remove("exist")
+                    console.log(form[item])
+                    let temp_text = form[item].previousElementSibling.innerHTML
+                    form[item].previousElementSibling.innerHTML = temp_text.split(" - ")[0]
+                }
+            })
+            e.preventDefault();
+
+            const payload = new FormData(form);
+
+            const response = await fetch("http://localhost/goparcel/api/adminRegister.php"
+                , {
+                    method: "POST",
+                    body: payload
+                })
+            const data = await response.text();
+            if (data.startsWith("SUCCESS")) {
+                alert("Admin success Register")
+                localStorage.setItem("prior", "admin")
+                localStorage.setItem("user", form.adminEmail.value)
+                // window.location.href = "./index.html";
+            }
+            else if (data.startsWith("ERROR:")) {
+                form.adminEmail.classList.add("exist")
+                form.adminEmail.previousElementSibling.innerHTML = `EMAIL - <span class="existing">ALREADY EXIST</span>`;
+            }
+            else {
+                console.error("Got error with server")
+                console.log(data)
+            }
+        })
+    </script>
+</body>
+
+</html>

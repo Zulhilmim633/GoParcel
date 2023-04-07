@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <title>GoParcel - ADMIN</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+    <script src="../JS/admin.js" defer></script>
+    <style>
+        body {
+            background-color: #3b3d41;
+        }
+        .about {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            margin-bottom: 42px;
+        }
+
+        .about h1 {
+            margin-bottom: 31px;
+        }
+
+        .advantage {
+            position: relative;
+            left: -503px;
+        }
+
+        .advantage ul li {
+            padding: 13px;
+        }
+
+        .about p,
+        .advantage ul li {
+            color: #787878;
+        }
+
+        .content {
+            padding: 0 0 50px 0;
+        }
+
+        .back {
+            background-color: #eeeeee;
+            display: flex;
+            justify-content: center;
+            padding-top: 50px;
+            margin-bottom: 33px;
+        }
+
+        .form {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        input[type=text],
+        textarea,
+        select,
+        input[type=number] {
+            margin-left: 15px;
+        }
+        
+        input[type=text] {
+            margin-bottom: 7px;
+        }
+        
+        td {
+            padding: 11px;
+        }
+
+        select {
+            width: 189px;
+            height: 26px;
+        }
+
+        .parcel-section,.status-section {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        table {
+            background-color: #fbfcfc;
+            border: 2px solid black;
+            border-spacing: 0;
+            border-radius: 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .respon {
+            position: absolute;
+            width: 764px;
+            height: 471px;
+            background-color: #fbfcfc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 33px;
+            border-radius: 15px;
+            font-weight: bold;
+            animation: 2.5s cubic-bezier(.25, 1, .30, 1) square-in-hesitate both;
+        }
+        h2 ,h1{
+            color: #fcfcfc;
+        }
+        
+
+        @keyframes square-in-hesitate {
+            0% {
+                clip-path: inset(100% 100% 100% 100%);
+            }
+
+            /* 40% {
+                clip-path: inset(33% 33% 33% 33%);
+            } */
+
+            100% {
+                clip-path: inset(0 0 0 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="./index.html" class="Logo">
+            <img src="../image/logo.png" alt="page icon">
+        </a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./userList.html'">User List</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./adminList.html'">Admin List</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./parcelList.html'">Parcel List</button>
+        </div>
+        <div class="account-section">
+            <a href="./adminSignIn.html"><span class="btn signin">Sign In</span></a>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Insert parcel detail</h1>
+        <div class="container">
+            <form>
+                <div class="status-section">
+                    <h2>Parcel Status</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form">
+                                    <label for="status">Status</label>
+                                    <!-- <input type="text" name="status" id="status" autocomplete="off" required> -->
+                                    <select name="status" id="status">
+                                        <option value="Pickup">Pickup</option>
+                                        <option value="Transit">Transit</option>
+                                        <option value="Delivery">Delivery</option>
+                                        <option value="Delivered">Delivered</option>
+                                    </select>
+                                </div>
+                                <div class="form">
+                                    <label for="transitLoc">Location Transit</label>
+                                    <input type="text" name="transitLoc" id="transitLoc" autocomplete="off"
+                                        >
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form">
+                                    <label for="pickLoc">Location Pickup</label>
+                                    <input type="text" name="pickLoc" id="pickLoc" autocomplete="off" >
+                                </div>
+                                <div class="form">
+                                    <label for="date">Delivery Date</label>
+                                    <input type="text" name="date" id="date" autocomplete="off">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="sender-section">
+                    <h2>Sender Details</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form">
+                                    <label for="senderName">Name</label>
+                                    <input type="text" name="senderName" id="senderName" autocomplete="off" required>
+                                </div>
+                                <div class="form">
+                                    <label for="senderPhoneNo">Phone No</label>
+                                    <input type="text" name="senderPhoneNo" id="senderPhoneNo" autocomplete="off"
+                                        required>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form">
+                                    <label for="senderAddress">Address</label>
+                                    <textarea style="resize: none;height: 56px;width: 359px;" type="text"
+                                        name="senderAddress" id="senderAddress" size="150" autocomplete="off"
+                                        required></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="receiver-section">
+                    <h2>Receiver Details</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form">
+                                    <label for="receiverName">Name</label>
+                                    <input type="text" name="receiverName" id="receiverName" autocomplete="off"
+                                        required>
+                                </div>
+                                <div class="form">
+                                    <label for="receiverPhoneNo">Phone No</label>
+                                    <input type="text" name="receiverPhoneNo" id="receiverPhoneNo" autocomplete="off"
+                                        required>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form">
+                                    <label for="receiverAddress">Address</label>
+                                    <textarea style="resize: none;height: 56px;width: 359px;" type="text"
+                                        name="receiverAddress" id="receiverAddress" size="150" autocomplete="off"
+                                        required></textarea>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="parcel-section">
+                    <h2>Parcel Details</h2>
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="form">
+                                    <label for="detail">Goods Detail</label>
+                                    <input type="text" name="detail" id="detail" autocomplete="off" >
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form">
+                                    <label for="weight">Weight (KG)</label>
+                                    <input type="number" name="weight" id="weight" min="0" max="30" autocomplete="off" required>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="form">
+                                    <label for="value">Goods Value</label>
+                                    <input type="text" name="value" id="value" autocomplete="off" required>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="form">
+                                    <label for="payBy">Payment By</label>
+                                    <select name="payBy" id="payBy">
+                                        <option value="sender">Sender</option>
+                                        <option value="receiver">Receiver</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="form" style="display: flex;justify-content: center;">
+                                    <input type="submit" value="Update Order">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        const form = document.forms[0]
+        var trackno;
+        const url = new URL(window.location.href)
+        const id = url.searchParams.get("id")
+
+        async function load() {
+            let response = await fetch(`http://localhost/goparcel/api/parcelDetail.php?id=${id}`).then(res=>res.text())
+            console.log(response)
+            if(response.trim().startsWith("SUCCESS")){
+                let data = response.split(":")[1]
+                
+                form.status.value = data.split(";")[0]
+                form.transitLoc.value = data.split(";")[1]
+                form.pickLoc.value = data.split(";")[2]
+                form.date.value = data.split(";")[3]
+                form.senderName.value = data.split(";")[4]
+                form.senderPhoneNo.value = data.split(";")[5]
+                form.senderAddress.value = data.split(";")[6]
+                form.receiverName.value = data.split(";")[7]
+                form.receiverPhoneNo.value = data.split(";")[8]
+                form.receiverAddress.value = data.split(";")[9]
+                form.detail.value = data.split(";")[10]
+                form.weight.value = data.split(";")[11]
+                form.value.value = data.split(";")[12]
+                form.payBy.value = data.split(";")[13]
+                trackno = data.split(";")[14]
+            }
+        }
+
+        load()
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const payload = new FormData(form);
+            payload.append("id",id)
+            payload.append("trackingNo",trackno)
+
+            const response = await fetch("http://localhost/goparcel/api/parcelUpdate.php",
+                {
+                    method: "POST",
+                    body: payload
+                })
+            const data = await response.text();
+            if (data.trim().startsWith("SUCCESS")) {
+                document.querySelector(".container").innerHTML += `<div class="respon">Order has been updated</div>`;
+                setTimeout(() => {
+                    window.history.back()
+                }, 1800);
+            }else{
+                console.error(data.trim())
+            }
+        })
+    </script>
+</body>
+</html>

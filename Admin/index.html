@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoParcel - ADMIN</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="../CSS/admin.css">
+    <script src="../JS/admin.js" defer></script>
+    <!-- <script>
+        window.location.href="./userList.html"
+    </script> -->
+    <script>
+        const prior = localStorage.getItem("prior")
+        if(prior==null){
+            alert("Your account cannot be used in admin")
+            window.location.href="./adminSignIn.html"
+        }
+    </script>
+    <style>
+        body {
+            background-color: #222d32;
+        }
+
+        .searchbar {
+            position: absolute;
+            right: 94px;
+            top: 112px;
+        }
+
+        .searchbar form {
+            display: flex;
+            height: 32px;
+        }
+
+        .searchbar form>button>img {
+            height: 27px;
+        }
+
+        .content {
+            margin-top: 28px;
+        }
+
+        table {
+            border-spacing: 0;
+            border: 2px solid black;
+            background-color: #fbfcfc;
+            border-radius: 16px;
+        }
+
+        th,
+        td {
+            padding: 15px;
+            border: 1px solid black;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            width: 35em;
+            gap: 15px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 9px;
+            width: 16em;
+            background-color: #92D5F1;
+            padding: 18px 0px 18px 0px;
+            gap: 15px;
+        }
+
+        .container>h2 {
+            border-radius: 9px;
+            color: white;
+            padding: 8px;
+            background-color: #6592A5;
+        }
+
+        .container>a {
+            text-decoration: none;
+            background-color: #fce38a;
+            border-radius: 9px;
+            padding: 10px;
+            color: #222D32;
+        }
+
+        .container>a:hover {
+            transition: .4s;
+            opacity: .7;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="../index.html" class="Logo">
+            <img src="../image/logo.png" alt="page icon">
+        </a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./userList.html'">User List</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./adminList.html'">Admin List</button>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="window.location.href='./parcelList.html'">Parcel List</button>
+        </div>
+        <div class="account-section">
+            <a href="./adminSignIn.html"><span class="btn signin">Sign In</span></a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="dashboard">
+            <div class="container">
+                <h2>Total User</h2>
+                <h2 class="user">0</h2>
+                <a href="./userList.html">View List</a>
+            </div>
+            <div class="container">
+                <h2>Total Admin</h2>
+                <h2 class="admin">0</h2>
+                <a href="./adminList.html">View List</a>
+            </div>
+            <div class="container">
+                <h2>Total Parcel</h2>
+                <h2 class="parcel">0</h2>
+                <a href="./parcelList.html">View List</a>
+            </div>
+            <div class="container">
+                <h2>Parcel Completed</h2>
+                <h2 class="Completed">0</h2>
+            </div>
+        </div>
+    </div>
+    <script>
+        async function load() {
+            let response = await fetch("http://localhost/goparcel/api/dashboard.php").then(res=>res.text());
+            response = response.split(";")
+            console.log(response)
+            document.querySelector(".user").innerText = response[0]
+            document.querySelector(".admin").innerText = response[1]
+            document.querySelector(".parcel").innerText = response[2]
+            document.querySelector(".Completed").innerText = response[3]
+        }
+        load()
+    </script>
+</body>
+
+</html>

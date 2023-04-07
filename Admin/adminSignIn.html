@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoParcel - ADMIN</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../icon/favicon-16x16.png">
+    <link rel="stylesheet" href="../CSS/shake.css">
+    <style>
+        body {
+            background: #222D32;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-box {
+            margin-top: 171px;
+            height: auto;
+            background: #1A2226;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            width: 32vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            outline: 0px;
+        }
+
+        input[type=text] {
+            background-color: #1A2226;
+            border: none;
+            border-bottom: 2px solid #0DB8DE;
+            border-top: 0px;
+            border-radius: 0px;
+            font-weight: bold;
+            outline: 0;
+            margin-bottom: 20px;
+            padding-left: 0px;
+            color: #ECF0F5;
+            width: 367px;
+        }
+
+        input[type=password] {
+            background-color: #1A2226;
+            border: none;
+            border-bottom: 2px solid #0DB8DE;
+            border-top: 0px;
+            border-radius: 0px;
+            font-weight: bold;
+            outline: 0;
+            padding-left: 0px;
+            margin-bottom: 20px;
+            color: #ECF0F5;
+            width: 367px;
+        }
+
+        .form-control:focus {
+            border-color: inherit;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-bottom: 2px solid #0DB8DE;
+            outline: 0;
+            background-color: #1A2226;
+            color: #ECF0F5;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0;
+        }
+
+        label {
+            margin-bottom: 0px;
+        }
+
+        .login-title {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ECF0F5;
+        }
+
+        .form-control-label {
+            font-size: 10px;
+            color: #6C6C6C;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline-primary {
+            border-color: #0DB8DE;
+            color: #0DB8DE;
+            border-radius: 0px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            background-color: #00000000;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            margin-bottom: 40px;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #0DB8DE;
+            right: 0px;
+            color: white;
+        }
+
+        .login-btn a {
+            text-decoration: none;
+            border: 1px solid;
+            margin-right: 36px;
+            padding: 0px 4px 0px 4px;
+            border-radius: 3px;
+        }
+
+        .login-btn {
+            margin-top: 27px;
+        }
+
+        .respon {
+            width: 482px;
+            height: 381px;
+            position: absolute;
+            background-color: #222d32;
+            color: white;
+            display: flex;
+            font-weight: bold;
+            font-size: 50px;
+            animation: 2.5s cubic-bezier(.25, 1, .30, 1) square-in-hesitate both;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes square-in-hesitate {
+            0% {
+                clip-path: inset(100% 100% 100% 100%);
+            }
+
+            40% {
+                clip-path: inset(33% 33% 33% 33%);
+            }
+
+            100% {
+                clip-path: inset(0 0 0 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-box">
+            <div class="login-title">
+                ADMIN PANEL
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="adminName" class="form-control-label">EMAIL</label>
+                    <input type="text" name="adminName" id="adminName" pattern="^\S{1,70}$"
+                        title="Please make sure no space" class="form-control" autocomplete="off" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword" class="form-control-label">PASSWORD</label>
+                    <input type="password" name="adminPassword" id="adminPassword" class="form-control"
+                        autocomplete="off" required>
+                </div>
+                <label class="form-control-label">
+                    DOESN'T HAVE ACCOUNT? CLICK
+                    <a href="./adminregister.html" class="btn-outline-primary">HERE</a>
+                    <br>
+                </label>
+                <div class="login-btn">
+                    <input type="submit" value="LOGIN" class="btn-outline-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        const form = document.forms[0]
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const payload = new FormData(form)
+            const response = await fetch("http://localhost/goparcel/api/adminLogin.php",
+                {
+                    method: "POST",
+                    body: payload
+                })
+            const data = await response.text()
+            if (data.startsWith("SUCCESS")) {
+                document.querySelector(".login-box").innerHTML += `<div class="respon">Success</div>`
+                localStorage.setItem("prior","admin")
+                setTimeout(() => {
+                    window.location.href = "./userList.html"
+                }, 2000);
+            }
+            else {
+                alert(data.split(":")[1])
+            }
+        })
+    </script>
+</body>
+
+</html>
