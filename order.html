@@ -303,10 +303,10 @@
                 })
             const data = await response.text();
             if (data.startsWith("SUCCESS")) {
-                document.querySelector(".container").innerHTML += `<div class="respon">Order has been placed please prepare the money</div>`;
+                document.querySelector(".container").innerHTML += `<div class="respon">Order has been placed with Tracking no ${data.split(":")[1]}, please prepare the money</div>`;
                 setTimeout(() => {
                     window.location.href = './shipping.html'
-                }, 3500);
+                }, 4500);
             }
         })
     </script>

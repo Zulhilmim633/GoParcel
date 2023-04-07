@@ -16,8 +16,7 @@
             exit();
             mysqli_free_result($result);
         } else {
-            $er = filter_var($_POST['userName'], FILTER_VALIDATE_EMAIL) ? "ERROR:Email does not match with password" : "ERROR:Username does not match with password";
-            echo $er;
+            echo "ERROR:NOTFOUND";
         }
         mysqli_close($connect);
     }

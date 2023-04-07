@@ -17,14 +17,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //register the user in the database
     //make the query
+    $pasTrack = [];
+
+    if($_POST['shippingType'] == "regular"){
+        $q = "SELECT trackingNumber FROM parcel WHERE trackingNumber LIKE 'GP%'";
+        $result = @mysqli_query($connect,$q);
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $pasTrack[] = $row['trackingNumber'];
+        }
+        $newTracking = "GP".(int)explode("GP",$pasTrack[count($pasTrack)-1])[1]+=1;
+        // echo $newTracking;
+    }
+    else if($_POST['shippingType'] == "Next Day") {
+        $q = "SELECT trackingNumber FROM parcel WHERE trackingNumber LIKE 'EGP%'";
+        $result = @mysqli_query($connect,$q);
+        while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+            $pasTrack[] = $row['trackingNumber'];
+        }
+        $newTracking = "EGP".(int)explode("EGP",$pasTrack[count($pasTrack)-1])[1]+=1;
+        // echo $newTracking;
+    }
+
     $q = "INSERT INTO parcel (parcelID,detail,shippingType,senderName,
     senderAddress,senderPhoneNo,receiverName,receiverAddress,receiverPhoneNo
     ,weight,value,payBy,trackingNumber) 
-    VALUES ('','$d','$sT','$sN','$sA','$sP','$rN','$rA','$rP','$w','$v','$pay','')";
+    VALUES ('','$d','$sT','$sN','$sA','$sP','$rN','$rA','$rP','$w','$v','$pay','$newTracking')";
 
     $result = @mysqli_query($connect, $q);
+    @mysqli_query($connect,"INSERT INTO tracking (trackingNo, status, pickupLoc, inTransitLoc, deliveryDate) 
+    VALUES ('$newTracking','Pickup','', '', '')");
     if ($result) {
-        echo "SUCCESS";
+        echo "SUCCESS:$newTracking";
     } else {
         echo "ERROR";
         echo mysqli_error($connect) . " Query: $q";
